@@ -1,5 +1,6 @@
 #pragma once
 
+#include <vector>
 #include <string>
 
 class BigInt
@@ -7,16 +8,13 @@ class BigInt
 private:
 	std::string _digits;
 	int _sign;
-	bool _binaryForm;
+
+	void _fromNumber(long long n);
+	void _fromString(std::string& s);
 
 	void _increment();
 	void _decrement();
 	void _trim();
-
-	BigInt _toBinary() const;
-	BigInt _fromBinary() const;
-	BigInt _inDecimal() const;
-	BigInt _inBinary() const;
 
 public:
 	BigInt(int n);
@@ -74,4 +72,8 @@ public:
 	friend std::ostream& operator<<(std::ostream& out, const BigInt& bi);
 
 	friend std::pair<BigInt, BigInt> divmod(const BigInt& a, const BigInt& b);
+
+	friend std::string to_string(const BigInt& a);
+
+	long long getLL() const;
 };
